@@ -106,6 +106,12 @@ jobs:
           # Add fixes
           cd ../KernelSU
           patch -p1 < mksu_susfs_fix.patch || true
+
+          patch -p1 < nongki_fix.patch || true
+
+          ./fix_nongki.sh
+
+          
   
       - name: Apply Hide Stuff Patches
         run: |
