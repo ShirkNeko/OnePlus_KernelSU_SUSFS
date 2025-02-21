@@ -75,6 +75,9 @@ jobs:
           curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/susfs/kernel/setup.sh" | bash -susfs
           cd ./KernelSU/kernel
           sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=12321/' ./Makefile
+          cd ..
+          cp ./KernelSU/patch/mksu_susfs_fix.patch ./KernelSU/
+          cd ./kernel/
 
       - name: Apply SUSFS Patches
         run: |
@@ -100,9 +103,7 @@ jobs:
           # Change to common directory and apply common SUSFS patch
           cd ../common
           patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
-
           # Add fixes
-          cp ../KernelSU/patch/mksu_susfs_fix.patch ../KernelSU/
           cd ../KernelSU
           patch -p1 < mksu_susfs_fix.patch || true
       - name: Apply Hide Stuff Patches
