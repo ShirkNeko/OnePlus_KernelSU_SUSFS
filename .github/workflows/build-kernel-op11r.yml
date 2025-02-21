@@ -88,7 +88,6 @@ jobs:
           cp ../../susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.15.patch ./common/
           cp ../../susfs4ksu/kernel_patches/fs/* ./common/fs/
           cp ../../susfs4ksu/kernel_patches/include/linux/* ./common/include/linux/
-          cp ./KernelSU/patch/mksu_susfs_fix.patch ./KernelSU/
       - name: Apply MKSU Patches
         run: |
           echo "Changing to configuration directory: $CONFIG..."
@@ -103,6 +102,9 @@ jobs:
           patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
 
           # Add fixes
+          cd ../KernelSU
+          # Add fixes
+          cp ../KernelSU/patch/mksu_susfs_fix.patch ../KernelSU/
           cd ../KernelSU
           patch -p1 < mksu_susfs_fix.patch || true
 
