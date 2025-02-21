@@ -88,6 +88,7 @@ jobs:
           cp ../../susfs4ksu/kernel_patches/50_add_susfs_in_gki-android13-5.15.patch ./common/
           cp ../../susfs4ksu/kernel_patches/fs/* ./common/fs/
           cp ../../susfs4ksu/kernel_patches/include/linux/* ./common/include/linux/
+          cp ../../kernel_patches/mksu_susfs.patch ./KernelSU/
 
           
       - name: Apply MKSU Patches
@@ -100,7 +101,9 @@ jobs:
           patch -p1 --forward < 10_enable_susfs_for_ksu.patch || true
           
           echo "Applying MKSU specific SUSFS patch..."
+          
           cp ../../kernel_patches/mksu_susfs.patch ./KernelSU/
+          cd ../KernelSU
           patch -p1 < mksu_susfs.patch
 
           # Change to common directory and apply common SUSFS patch
