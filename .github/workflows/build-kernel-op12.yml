@@ -101,7 +101,7 @@ jobs:
           
           # Change to common directory and apply common SUSFS patch
           cd ../common
-          patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
+          patch -p1 < 50_add_susfs_in_gki-android14-6.1.patch || true
           # Add fixes
           cd ../KernelSU
           patch -p1 < mksu_susfs_fix.patch || true
