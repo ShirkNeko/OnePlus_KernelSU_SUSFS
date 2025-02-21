@@ -104,6 +104,7 @@ jobs:
           patch -p1 < 50_add_susfs_in_gki-android13-5.15.patch || true
 
           # Add fixes
+          cp ../patch/mksu_susfs_fix.patch ../KernelSU/
           cd ../KernelSU
           patch -p1 < mksu_susfs_fix.patch || true
   
