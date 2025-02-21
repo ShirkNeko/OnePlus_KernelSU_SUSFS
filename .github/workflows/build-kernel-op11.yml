@@ -76,8 +76,8 @@ jobs:
           cd ./KernelSU/kernel
           sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=12000/' ./Makefile
           cd ..
-          cp ./KernelSU/patch/mksu_susfs_fix.patch ./
-          cd ./kernel
+          cp ./patch/mksu_susfs_fix.patch ./
+          cd kernel
 
       - name: Apply SUSFS Patches
         run: |
