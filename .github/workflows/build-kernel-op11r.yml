@@ -75,9 +75,6 @@ jobs:
           curl -LSs "https://raw.githubusercontent.com/ShirkNeko/KernelSU/susfs/kernel/setup.sh" | bash -susfs
           cd ./KernelSU/kernel
           sed -i 's/ccflags-y += -DKSU_VERSION=16/ccflags-y += -DKSU_VERSION=12000/' ./Makefile
-          cd ..
-          cp ./patch/mksu_susfs_fix.patch ./
-          cd kernel
 
       - name: Apply SUSFS Patches
         run: |
@@ -98,6 +95,7 @@ jobs:
 
           echo "Applying SUSFS patches for MKSU..."
           cd ./KernelSU
+          cp ./patch/mksu_susfs_fix.patch ./
           patch -p1 --forward < 10_enable_susfs_for_ksu.patch || true
           
           # Change to common directory and apply common SUSFS patch
